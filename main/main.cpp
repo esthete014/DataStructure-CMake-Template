@@ -1,7 +1,7 @@
 // Copyright 2022 Marina Usova
 
 #include <stdio.h>
-#include "example.h"
+#include "../lib_example/example.h"
 
 void main() {
   int a = 1, b = 4;
