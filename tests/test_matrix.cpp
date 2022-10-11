@@ -1,5 +1,7 @@
+// Copyright 2022 Marina Usova
+
 #include <gtest.h>
-#include "matrix.h"
+#include "../lib_matrix/matrix.h"
 
 TEST(TDynamicMatrix, can_create_matrix_with_positive_length) {
   ASSERT_NO_THROW(TDynamicMatrix<int> m(5));

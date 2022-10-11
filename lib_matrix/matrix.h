@@ -1,22 +1,23 @@
-// Copyright (c) Фамилия И.О.
+// Copyright 2022 Marina Usova
 
 #ifndef LIB_MATRIX_MATRIX_H_
 #define LIB_MATRIX_MATRIX_H_
 
 #include <iostream>
-
-using namespace std;
+#include <algorithm>
+#include <utility>
 
 const int MAX_VECTOR_SIZE = 100000000;
 const int MAX_MATRIX_SIZE = 10000;
 
 template<typename T>
 class TDynamicVector {
-protected:
+ protected:
   size_t sz;
   T* pMem;
-public:
-  TDynamicVector(size_t size = 1) : sz(size) {
+
+ public:
+   explicit TDynamicVector(size_t size = 1) : sz(size) {
     if (sz == 0)
       throw out_of_range("Vector size should be greater than zero");
     pMem = new T[sz]();
@@ -28,10 +29,10 @@ public:
     std::copy(arr, arr + sz, pMem);
   }
 
-  TDynamicVector(const TDynamicVector& v) {
+  explicit TDynamicVector(const TDynamicVector& v) {
   }
 
-  TDynamicVector(TDynamicVector&& v) noexcept {
+  explicit TDynamicVector(TDynamicVector&& v) noexcept {
   }
 
   ~TDynamicVector() {
@@ -49,7 +50,7 @@ public:
 
   size_t size() const noexcept { return sz; }
 
-  // индексация
+  // indexing
 
   T& operator[](size_t ind) {
   }
@@ -57,7 +58,7 @@ public:
   const T& operator[](size_t ind) const {
   }
 
-  // индексация с контролем
+  // indexing with control
 
   T& at(size_t ind) {
   }
@@ -65,7 +66,7 @@ public:
   const T& at(size_t ind) const {
   }
 
-  // сравнение
+  // comparisons
 
   bool operator==(const TDynamicVector& v) const noexcept {
   }
@@ -73,7 +74,7 @@ public:
   bool operator!=(const TDynamicVector& v) const noexcept {
   }
 
-  // скалярные операции
+  // scalar operations
 
   TDynamicVector operator+(T val) {
   }
@@ -84,7 +85,7 @@ public:
   TDynamicVector operator*(double val) {
   }
 
-  // векторные операции
+  // vector operations
 
   TDynamicVector operator+(const TDynamicVector& v) {
   }
@@ -100,15 +101,16 @@ public:
     std::swap(lhs.pMem, rhs.pMem);
   }
 
-  // ввод/вывод
+  // input / output
 
-  friend istream& operator>>(istream& istr, TDynamicVector& v) {
+
+  friend std::istream& operator>>(std::istream& istr, TDynamicVector& v) {
     for (size_t i = 0; i < v.sz; i++)
       istr >> v.pMem[i];
     return istr;
   }
 
-  friend ostream& operator<<(ostream& ostr, const TDynamicVector& v) {
+  friend std::ostream& operator<<(std::ostream& ostr, const TDynamicVector& v) {
     for (size_t i = 0; i < v.sz; i++)
       ostr << v.pMem[i] << ' ';
     return ostr;
@@ -119,30 +121,31 @@ template<typename T>
 class TDynamicMatrix : private TDynamicVector<TDynamicVector<T>> {
   using TDynamicVector<TDynamicVector<T>>::pMem;
   using TDynamicVector<TDynamicVector<T>>::sz;
-public:
-  TDynamicMatrix(size_t s = 1) : TDynamicVector<TDynamicVector<T>>(s) {
+
+ public:
+   explicit TDynamicMatrix(size_t s = 1) : TDynamicVector<TDynamicVector<T>>(s) {
     for (size_t i = 0; i < sz; i++)
       pMem[i] = TDynamicVector<T>(sz);
   }
 
   using TDynamicVector<TDynamicVector<T>>::operator[];
 
-  // сравнение
+  // comparison
 
   bool operator==(const TDynamicMatrix& m) const noexcept {
   }
 
-  // матрично-скалярные операции
+  // matrix-scalar operations
 
   TDynamicVector<T> operator*(const T& val) {
   }
 
-  // матрично-векторные операции
+  // matrix-vector operations
 
   TDynamicVector<T> operator*(const TDynamicVector<T>& v) {
   }
 
-  // матрично-матричные операции
+  // matrix-matrix operations
 
   TDynamicMatrix operator+(const TDynamicMatrix& m) {
   }
@@ -153,12 +156,12 @@ public:
   TDynamicMatrix operator*(const TDynamicMatrix& m) {
   }
 
-  // ввод/вывод
+  // input / output
 
-  friend istream& operator>>(istream& istr, TDynamicMatrix& v) {
+  friend std::istream& operator>>(std::istream& istr, TDynamicMatrix& v) {
   }
 
-  friend ostream& operator<<(ostream& ostr, const TDynamicMatrix& v) {
+  friend std::ostream& operator<<(std::ostream& ostr, const TDynamicMatrix& v) {
   }
 };
 
