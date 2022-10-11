@@ -1,3 +1,5 @@
+// Copyright 2022 Marina Usova
+
 #include <gtest.h>
 
 int main(int argc, char **argv) {

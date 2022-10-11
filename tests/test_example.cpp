@@ -1,5 +1,7 @@
-#include "example.h"
+// Copyright 2022 Marina Usova
+
 #include <gtest.h>
+#include "example.h"
 
 #define EPSILON 0.000001
 

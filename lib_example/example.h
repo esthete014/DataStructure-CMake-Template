@@ -1,6 +1,8 @@
-#ifndef INCLUDE_EXAMPLE_H_
-#define INCLUDE_EXAMPLE_H_
+// Copyright 2022 Marina Usova
+
+#ifndef LIB_EXAMPLE_EXAMPLE_H_
+#define LIB_EXAMPLE_EXAMPLE_H_
 
 float division(int a, int b);
 
-#endif  // INCLUDE_EXAMPLE_H_
+#endif  // LIB_EXAMPLE_EXAMPLE_H_
