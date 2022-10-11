@@ -17,7 +17,7 @@ class TDynamicVector {
   T* pMem;
 
  public:
-   explicit TDynamicVector(size_t size = 1) : sz(size) {
+  explicit TDynamicVector(size_t size = 1) : sz(size) {
     if (sz == 0)
       throw out_of_range("Vector size should be greater than zero");
     pMem = new T[sz]();
@@ -123,7 +123,8 @@ class TDynamicMatrix : private TDynamicVector<TDynamicVector<T>> {
   using TDynamicVector<TDynamicVector<T>>::sz;
 
  public:
-   explicit TDynamicMatrix(size_t s = 1) : TDynamicVector<TDynamicVector<T>>(s) {
+  explicit TDynamicMatrix(size_t s = 1)
+    : TDynamicVector<TDynamicVector<T>>(s) {
     for (size_t i = 0; i < sz; i++)
       pMem[i] = TDynamicVector<T>(sz);
   }
